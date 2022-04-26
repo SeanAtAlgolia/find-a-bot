@@ -17,7 +17,7 @@
 const tabs = [
   { name: "Hub", href: "#", current: false },
   { name: "Events Debugger", href: "#", current: false },
-  { name: "Find A Bot", href: "#", count: "2", current: true },
+  { name: "Find A Bot", href: "#", count: "1", current: true },
 ];
 
 function classNames(...classes) {
