@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Tabs from "../components/Tabs";
 import LogsOutPut from "../components/LogsOutput";
+import Test from "../components/Test";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       </Head>
       <Tabs />
       <LogsOutPut />
+      <Test />
     </div>
   );
 }
