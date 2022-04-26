@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-const ipAddresses = [
+const fakelogs = [
   {
     ip: "12.546.01.8",
     action: "Queries",
@@ -13,7 +13,7 @@ const ipAddresses = [
     risk: "High",
   },
   {
-    ip: "69.89.31.226",
+    ip: "61.89.31.226",
     action: "Queries",
     total: 39,
     risk: "Low",
@@ -68,11 +68,7 @@ const ipAddresses = [
   },
 ];
 
-function order(a, b) {
-  ipAddresses.sort((a, b) => b.total - a.total);
-}
-
-export default function LogsOutPut() {
+export default function LogsTable({ logs }) {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -112,40 +108,35 @@ export default function LogsOutPut() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {ipAddresses
-              .map((item) => (
-                <tr key={item.ip}>
-                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                    {item.ip}
-                  </td>
-                  <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                    {item.action}
-                  </td>
-                  <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                    {item.total}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <span
-                      className={`inline-flex rounded-full  px-2 text-xs font-semibold leading-5 ${
-                        item.risk == "Low"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {item.risk}
-                    </span>
-                  </td>
-                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <a
-                      href="#"
-                      className="text-indigo-600 hover:text-indigo-900"
-                    >
-                      View Logs<span className="sr-only">, {item.name}</span>
-                    </a>
-                  </td>
-                </tr>
-              ))
-              .sort(order)}
+            {logs.map((item) => (
+              <tr key={item.ip}>
+                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                  {item.ip}
+                </td>
+                <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">
+                  Queries
+                </td>
+                <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
+                  {item.count}
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <span
+                    className={`inline-flex rounded-full  px-2 text-xs font-semibold leading-5 ${
+                      item.count < 500
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {item.count > 500 ? "High" : "Low"}
+                  </span>
+                </td>
+                <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                  <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                    View Logs<span className="sr-only">, {item.name}</span>
+                  </a>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
