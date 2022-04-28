@@ -1,19 +1,5 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+import React from "react";
+
 const tabs = [
   { name: "Hub", href: "#", current: false },
   { name: "Events Debugger", href: "#", current: false },
@@ -24,7 +10,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navigation() {
+const Navigation = React.memo(({ logs }) => {
   return (
     <div className="ml-6">
       <div className="sm:hidden">
@@ -68,7 +54,7 @@ export default function Navigation() {
                       "hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
                     )}
                   >
-                    {tab.count}
+                    {logs.filter((log) => log.count > 500).length}
                   </span>
                 ) : null}
               </a>
@@ -78,4 +64,6 @@ export default function Navigation() {
       </div>
     </div>
   );
-}
+});
+
+export default Navigation;
